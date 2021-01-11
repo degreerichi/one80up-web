@@ -21,11 +21,17 @@
 				overflow: auto;
 				background-color: white;
 			} */
+
+			.fullscreen-iframe {
+				width: 100vw;
+				height: 100vh;
+			}
 		</style>
 	</head>
 	<body class="is-preload">
 
-		<!-- Header -->
+		<div id="web-content">
+			<!-- Header -->
 			<header id="header">
 				<div class="content">
 					<h1><a href="#" class="text-neuropol">One80up</a></h1>
@@ -37,8 +43,8 @@
 					</ul>
 				</div>
 				<div class="image phone">
-					<div class="inner">
-						<iframe src="https://one80up.netlify.app" frameborder="0"></iframe>
+					<div class="inner" id="the-phone">
+						<iframe id="main-iframe" src="https://one80up.netlify.app" frameborder="0"></iframe>
 						<!-- <img src="images/screen.jpg" alt="" /> -->
 					</div>
 				</div>
@@ -435,6 +441,8 @@
 			</ul>
 			<p class="copyright">&copy; Untitled. Credits: <a href="http://html5up.net">HTML5 UP</a></p>
 		</footer> -->
+		</div>
+		
 
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
@@ -443,6 +451,43 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
-
+			<script
+				src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+				integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
+				crossorigin="anonymous"></script>
 	</body>
+	<script>
+
+		$(document).ready(function(){
+
+			var setupIframeForMobile = function(){
+				if(!$('#main-iframe').hasClass('fullscreen-iframe')){
+					$('body').prepend($('#main-iframe'));
+					$('#web-content').hide();
+					$('#main-iframe').addClass('fullscreen-iframe');
+				}
+			}
+
+			var setupIframeForDesktop = function(){
+				if($('#main-iframe').hasClass('fullscreen-iframe')){
+					$('#the-phone').prepend($('#main-iframe'));
+					$('#web-content').show();
+					$('#main-iframe').removeClass('fullscreen-iframe');
+				}
+			}
+
+			var checkWindowWidthForIframe = function(){
+				if($(window).width() < 600){
+					setupIframeForMobile();
+				}else{
+					setupIframeForDesktop();
+				}
+			}
+
+			checkWindowWidthForIframe();
+			$(window).resize(checkWindowWidthForIframe);
+
+		});
+		
+	</script>
 </html>
