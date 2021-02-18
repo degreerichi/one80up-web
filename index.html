@@ -461,27 +461,28 @@
 
 		$(document).ready(function(){
 
-			var setupIframeForMobile = function(){
-				if(!$('#main-iframe').hasClass('fullscreen-iframe')){
-					$('body').prepend($('#main-iframe'));
-					$('#web-content').hide();
-					$('#main-iframe').addClass('fullscreen-iframe');
-				}
-			}
+			// var setupIframeForMobile = function(){
+			// 	if(!$('#main-iframe').hasClass('fullscreen-iframe')){
+			// 		$('body').prepend($('#main-iframe'));
+			// 		$('#web-content').hide();
+			// 		$('#main-iframe').addClass('fullscreen-iframe');
+			// 	}
+			// }
 
-			var setupIframeForDesktop = function(){
-				if($('#main-iframe').hasClass('fullscreen-iframe')){
-					$('#the-phone').prepend($('#main-iframe'));
-					$('#web-content').show();
-					$('#main-iframe').removeClass('fullscreen-iframe');
-				}
-			}
+			// var setupIframeForDesktop = function(){
+			// 	if($('#main-iframe').hasClass('fullscreen-iframe')){
+			// 		$('#the-phone').prepend($('#main-iframe'));
+			// 		$('#web-content').show();
+			// 		$('#main-iframe').removeClass('fullscreen-iframe');
+			// 	}
+			// }
 
 			var checkWindowWidthForIframe = function(){
 				if($(window).width() < 600){
-					setupIframeForMobile();
+					window.location.replace("https://one80up.netlify.app");
+					// setupIframeForMobile();
 				}else{
-					setupIframeForDesktop();
+					// setupIframeForDesktop();
 				}
 			}
 
